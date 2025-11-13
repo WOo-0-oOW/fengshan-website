@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fengshan Jiakang Glass — 示例主页</title>
+  <meta name="description" content="Linhai Fengshan Jiakang Glass Industry Co., ltd — 眼镜产品示例页面" />
+
+  <style>
+    :root{
+      --accent:#0b6b9a;
+      --muted:#666;
+      --bg:#f8f9fb;
+      --container:100%;
+      --gap:18px;
+      --card-radius:12px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#222;line-height:1.5}
+    .container{max-width:var(--container);margin:0 auto;padding:24px}
+
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e6e9ee;
+    }
+
+    /* 顶部栏 - 增大高度 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 60px;  /* 增加上下内边距，让 header 模块更大 */
+      max-width: 1400px;    /* 和 Strengths / About Us 模块宽度一致 */
+      margin: 0 auto;       /* 居中 */
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;            /* 图标间距稍大，视觉协调 */
+    }
+
+    .logo img {
+      height: 64px;          /* 增大 logo */
+    }
+
+    /* 导航 */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 24px;             /* 导航间距稍大 */
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;       /* 字体稍大 */
+    }
+
+    /* CTA 按钮 */
+    .cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 24px;    /* 按钮增大，与模块一致 */
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    /* 响应式处理 */
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 30px;
+        gap: 12px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .cta {
+        align-self: center;
+      }
+    }
+
+   
+    /* hero */
+    /* 动画关键帧 */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column; /* 上下排列 */
+      gap: 32px;
+      padding: 80px 0;               /* 模块上下间距 */
+      align-items: center;
+      text-align: center; /* 文字居中 */
+    }
+
+    /* ABOUT US 放大样式 + 动画 */
+    .hero-text .eyebrow {
+      color: #1e3a8a;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.2s;
+    }
+
+    /* 标题 + 动画 */
+    .hero-text h1 {
+      font-size: 36px;
+      margin: 0 0 16px;
+
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.4s;
+    }
+
+    /* 描述文字 + 动画 */
+    .hero-text p {
+      color: var(--muted);
+      margin: 0 0 24px;
+      line-height: 1.6;
+
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.6s;
+    }
+
+    /* 按钮 + 动画 */
+    .hero-text .cta-row {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.8s;
+    }
+
+    .hero-text .cta {
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .hero-text .cta-secondary {
+      color: var(--accent);
+      align-self: center;
+    }
+
+    /* 图片最大化显示 + 动画 */
+    .hero-image {
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e9eef6;
+
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 1s;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 900px) {
+      .hero {
+        padding: 40px 20px;
+        gap: 24px;
+      }
+
+      .hero-image {
+        max-width: 100%;
+      }
+    }
+
+
+    /* sections */
+    section{background:#fff;margin:18px 0;padding:28px;border-radius:10px}
+    .about-grid{display:flex;gap:20px;align-items:center}
+    .about-grid img{width:360px;height:220px;object-fit:cover;border-radius:10px}
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:12px}
+    .card{background:#fff;border:1px solid #eef2f6;border-radius:10px;padding:12px;box-shadow:0 6px 18px rgba(16,24,40,0.04)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .card h4{margin:10px 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    
+    /* 动画关键帧 */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+
+    /* 模块背景 */
+    .strengths {
+      padding: 80px 20px; /* 增加上下间距，让模块更大 */
+      display: flex;
+      justify-content: center;
+      background: #f7f9fc;
+    }
+
+    /* 容器卡片 */
+    .strengths-container {
+      max-width: 100%; /* 放大模块宽度 */
+      width: 100%;
+      text-align: center;
+      padding: 40px;
+      border-radius: 12px;
+      background-color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+      animation-delay: 0.2s;
+    }
+
+    /* 标题 */
+    .strengths-title {
+      font-size: 40px;      /* 放大标题 */
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #1e3a8a;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+
+
+    /* 列表 - 单行显示 */
+    .strengths-list {
+      display: flex;        /* 水平排列 */
+      justify-content: space-between;
+      gap: 40px;            /* 列间距 */
+      list-style: none;
+      padding: 0;
+      color: var(--muted);
+      font-size: 20px;      /* 列表字体稍大 */
+      font-weight: 500;
+      flex-wrap: wrap;      /* 超小屏幕自动换行 */
+    }
+
+    /* 列表项加图标 */
+    .strengths-list li {
+      position: relative;
+      padding-left: 28px;
+      flex: 1;              /* 平均分配空间 */
+    }
+
+    .strengths-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 900px) {
+      .strengths-list {
+        flex-direction: column; /* 小屏幕改为单列显示 */
+        gap: 16px;
+        text-align: left;
+      }
+
+      .strengths-container {
+        padding: 40px 20px;
+      }
+
+      .strengths-title {
+        font-size: 32px;
+        margin-bottom: 24px;
+      }
+    }
+
+    /* NEWS CENTER 标题 */
+    #news-title {
+      text-align: center;         /* 水平居中 */
+      font-size: 40px;            /* 标题大小，可调整 */
+      font-weight: 700;
+      color: #1e3a8a;             /* 工业风蓝色 */
+      margin-bottom: 32px;        /* 标题与列表间距 */
+    }
+    /* NEWS LIST */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; /* 增加间距，更通透 */
+      max-width: 1000px; /* 与其他模块宽度统一 */
+      margin: 0 auto;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 12px;
+      background: #f7f9fc; /* 卡片浅灰背景 */
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .news-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(16,24,40,0.08);
+    }
+
+    .news-item .thumb {
+      width: 120px;   /* 略大，增强视觉冲击 */
+      height: 80px;
+      background: #e0e7ff; /* 卡片背景色，与工业风蓝调统一 */
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .news-item time {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .news-item p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+/* Footer 整体背景铺满 */
+    footer {
+      background-color: #1e293b; /* 深色背景 */
+      color: #cbd5e1;            /* 浅灰文字 */
+      font-size: 14px;
+      padding: 60px 20px;        /* 内边距 */
+      border-radius: 0;           /* 去掉圆角让它占满全宽 */
+      width: 100%;                /* 占满页面宽度 */
+    }
+
+/* Footer Grid 三列布局 */
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* 前两列均分，第三列二维码自适应 */
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer strong {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    .footer p, .footer li {
+      color: #cbd5e1;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .footer-links li:hover {
+      color: #38bdf8;
+    }
+
+ /* 二维码列 */
+    .footer-grid > div:last-child {
+      text-align: center;   /* 居中二维码 */
+    }
+
+    .footer-grid > div:last-child img {
+      width: 120px;          /* 调整二维码大小 */
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .footer-grid > div:last-child p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .footer-copy {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      /* Hero 调整 */
+      .hero { grid-template-columns: 1fr; text-align: left; }
+
+      /* Topbar */
+      .topbar { padding: 12px; }
+
+      /* Navigation */
+      nav ul { display: none; }
+
+      /* Footer 调整为单列 */
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+
+      .footer-qr img { margin: 0 auto; }
+
+      /* News 列表小屏幕调整 */
+      .news-item { flex-direction: column; align-items: flex-start; }
+      .news-item .thumb { width: 100%; height: auto; }
+    }
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="logo">
+        <img src="images/outdoor.jpeg" alt="logo">
+        <div>
+          <strong>Fengshan Jiakang Glass</strong><br>
+          <small style="color:var(--muted)">Professional Glass Manufacturer</small>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">ABOUT US</a></li>
+          <li><a href="#">PRODUCT</a></li>
+          <li><a href="#">NEWS</a></li>
+          <li><a href="#">APPLICATION</a></li>
+          <li><a href="#">CONTACT US</a></li>
+          <li><a href="#">中文</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 这是网页最上方的大横幅区（Hero Banner）
+  左边是文字介绍，右边是产品或工厂图片。
+  .cta-row 内是按钮，比如“产品展示”“了解更多”-->
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <div class="eyebrow">ABOUT US</div>
+        <h1 id="hero-title">Professional Glass and Accessories Manufacturer</h1>
+        <p>Integrating research and development, production, sales and service — Focused on frames, sunglasses, and optical glasses.</p>
+        <div class="cta-row">
+          <a class="cta" href="#">Products</a>
+          <a href="#" class="cta-secondary">Know More</a>
+        </div>
+      </div>
+  
+      <div class="hero-image" role="img" aria-label="示例产品图">
+        <img src="images/outdoor.jpeg" alt="hero-image">
+      </div>
+    </section>
+  </main>
+  
+
+    <!-- ABOUT -->
+    <section aria-labelledby="about-title">
+      <div class="about-grid">
+        <div>
+          <h2 id="about-title">Linhai Fengshan Jiakang Glass Industry Co., ltd</h2>
+          <!--超级工厂，13年来专注于科学研究、制造和销售。公司产品包括框架眼镜、太阳镜、光学眼镜等，远销多国。-->
+          <p style="color:var(--muted)">
+            A super factory with 13 years of experience specializing in scientific research, manufacturing, and sales. 
+            The company's products include frames, sunglasses, optical glasses, and more, and are exported to many countries.</p>
+
+        <img src="images/yiqi1.jpeg" alt="厂房 / 产品图1">
+        <img src="images/yiqi2.jpeg" alt="厂房 / 产品图2">
+      </div>
+    </section>
+
+    <section class="strengths">
+      <div class="strengths-container">
+        <p class="strengths-title"><strong>OUR STRENGTHS</strong></p>
+        <ul class="strengths-list">
+          <li>Professional team</li>
+          <li>24/7 after-sales support</li>
+          <li>High-quality product service</li>
+          <li>Variety of products</li>
+        </ul>
+      </div>
+    </section>
+    
+
+    <!-- PRODUCTS -->
+    <section aria-labelledby="products-title">
+      <h3 id="products-title">MAIN RECOMMENDED PRODUCTS</h3>
+      <div class="products-grid" id="products">
+        <!-- 以下条目为示例；替换为真实图片与链接 -->
+        <article class="card">
+          <img src="images/glass1.jpeg" alt="glass1">
+          <h4>Glass1</h4>
+          <p>Type1</p>
+          <p style="margin-top:10px"><a href="#">VIEW MORE</a></p>
+        </article>
+
+        <article class="card">
+          <img src="images/glass2.jpeg" alt="glass2">
+          <h4>Glass2</h4>
+          <p>Type2</p>
+          <p style="margin-top:10px"><a href="#">VIEW MORE</a></p>
+        </article>
+
+        <article class="card">
+          <img src="images/glass3.jpeg" alt="glass3">
+          <h4>Glass3</h4>
+          <p>Type3</p>
+          <p style="margin-top:10px"><a href="#">VIEW MORE</a></p>
+        </article>
+
+        <!-- 更多卡片... -->
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section aria-labelledby="news-title">
+      <h3 id="news-title">NEWS CENTER</h3>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="thumb"></div>
+          <div>
+            <time datetime="2025-xx-xx">2025</time>
+            <strong>REDBUD Solar Pump in intersolar Brazil</strong>
+            <p style="color:var(--muted)">展会回顾：Redbud 太阳能泵参展 Intersolar Brazil。</p>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="thumb"></div>
+          <div>
+            <time datetime="2025-xx-xx">2025</time>
+            <strong>Congratulations for Redbud’s 137th Canton Fair</strong>
+            <p style="color:var(--muted)">广交会相关信息与参展通知。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div class="footer-grid">
+      <div>
+        <strong>Contact</strong>
+        <p style="color:var(--muted)">Add：No. 122, Houzhao Second District, Sulou Village, Yuanqiao Town, Huangyan District, Taizhou, Zhejiang, China.</p>
+        <p style="color:var(--muted)">Tel：0086-576-84896608 / 0086-19557697275</p>
+        <p style="color:var(--muted)">Email：sales@redbudpumps.com</p>
+      </div>
+
+      <div>
+        <strong>Links</strong>
+        <ul style="list-style:none;padding:0;margin:10px 0 0;color:var(--muted)">
+          <li>PRODUCTS</li>
+          <li>ABOUT US</li>
+          <li>NEWS</li>
+        </ul>
+      </div>
+
+      <div>
+        <img src="images/qrcode.png" alt="QR Code" />
+        <p>WeChat</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:18px;color:var(--muted);font-size:14px">
+      Copyright © Zhejiang Redbud Pump Industry Co.,ltd. All Rights
+    </div>
+  </footer>
+
+  <script>
+    // 这里可以放置交互脚本：例如导航下拉、产品详情模态框、懒加载图片等。
+    // 示例：简单的产品数据注入（可替换为从 CMS / JSON 动态拉取）
+    const products = [
+      {title:'2SD/2.5SD Deep well pump', desc:'高效率不锈钢深井泵', img:''},
+      {title:'3SD/3.5SD Deep well pump', desc:'中大流量型号', img:''},
+      {title:'4SD Deep well pump', desc:'商用与工业用深井泵', img:''},
+    ];
+    // （需要动态渲染时可使用上面的数据）
+  </script>
+</body>
+</html>
